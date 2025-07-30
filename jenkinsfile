@@ -28,6 +28,19 @@ pipeline{
                 git url:"${REPO_NAME}", branch:"${BRANCH_NAME}"
             }
         }
+        // doing sast with sonarqube
+        stage('SAST with Sonar-scanner'){
+            steps{
+                echo 'wait for sonar-scanner to finish'
+                bat """
+                %SONAR_HOME%\\sonar-scanner \
+                -Dsonar.projectKey=tan_devops_d3 \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=http://13.203.151.240:9000 \
+                -Dsonar.token=sqp_413884f37f8f42ab13072c12be516a75102dc42b
+                """
+            }
+        }
         
     }
 }
