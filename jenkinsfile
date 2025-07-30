@@ -6,12 +6,16 @@ pipeline{
     }
     stages{
         //stage 1
-        stage('testing and verify sonar-scanner command'){
+        stage('testing and verify required command'){
             steps{
                 echo 'hello world'
                 //bat or pwsh
                 bat """ 
                 %SONAR_HOME%\\sonar-scanner --version
+                echo == checking docker ===>
+                docker version
+                echo == java version ===>
+                java --version
                 """
             }
         }
