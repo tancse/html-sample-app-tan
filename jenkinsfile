@@ -5,7 +5,7 @@ pipeline{
         SONAR_HOME = 'C:\\Users\\Administrator\\Documents\\tools\\sonar-scanner\\bin'
         REPO_NAME = 'https://github.com/tancse/html-sample-app-tan.git'
         BRANCH_NAME = 'master'
-        SONAR_TOKEN = 'SonarQube token'
+        SONAR_TOKEN = credentials('html-css-app-tan-pro3')
     }
     stages{
         //stage 1
