@@ -1,0 +1,20 @@
+pipeline{
+    agent any //selection of agents
+    // defining environment variables
+    environment{
+        SONAR_HOME = 'C:\\Users\\Administrator\\Documents\\tools\\sonar-scanner\\bin'
+    }
+    stages{
+        //stage 1
+        stage('testing and verify sonar-scanner command'){
+            steps{
+                echo 'hello world'
+                //bat or pwsh
+                bat """ 
+                %SONAR_HOME%\\sonar-scanner --version
+                """
+            }
+        }
+        
+    }
+}
