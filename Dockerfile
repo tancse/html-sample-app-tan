@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2022
 LABEL name="thananya"
 LABEL email="thananya@linux.com"
 # label is optional part but good share with app to ops teams
-WORKDIR C:\inetpub\wwwroot
+WORKDIR C:\\inetpub\\wwwroot
 # to change directory  for default location IIS app server 
 COPY . . 
 # source to destination copy
