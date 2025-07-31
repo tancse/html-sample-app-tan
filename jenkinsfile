@@ -108,5 +108,16 @@ pipeline{
                 """
             }
         }
+        // Implement DAST
+        stage('Using zap to do'){
+            agent{
+                label 'tan-linux'
+            }
+            steps{
+                git url: "${REPO_NAME}", branch: "${BRANCH_NAME}"
+                echo 'using zap'
+                sh 'docker run -t --rm ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://172.31.45.128:1234'
+            }
+        }
     }
 }
