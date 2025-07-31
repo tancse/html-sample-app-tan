@@ -9,7 +9,7 @@ pipeline{
         DOCKER_CREDS = 'tan-dockerhub'
         SONAR_PROJECT_KEY = 'tan_devops_d3'
         SONAR_SERVER_NAME = 'tan_sonarqube' //name given for the sonarqube link in jenkins manage settings
-        //TRIVY_REPORT = 'trivy-tan-report.txt'
+        TRIVY_REPORT = 'trivy-tan-report.txt'
         IMAGE_NAME = 'thananya/tanwebapp-iis-ltsc2022'
         IMAGE_TAG = 'codev1'
         TRIVY_PATH = 'C:\\Program Files\\trivy'
