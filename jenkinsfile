@@ -115,6 +115,7 @@ pipeline{
             }
             steps{
                 git url: "${REPO_NAME}", branch: "${BRANCH_NAME}"
+                //git exe isadded
                 echo 'using zap'
                 sh 'docker run -t --rm ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://172.31.45.128:1234'
             }
