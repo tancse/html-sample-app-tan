@@ -65,8 +65,24 @@ pipeline{
                 bat 'docker images | findstr tanwebapp'
             }
         }   
+        // stage to scan the image for vuln
+        stage('Scan the image using trivy'){
+            echo 'start scanning vuln using trivy'
+            script {
+                    // Install trivy if not available
+                    sh '''
+                        if ! command -v trivy &> /dev/null; then
+                            echo "Installing Trivy..."
+                            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+                        fi
+                    '''
+
+                    // Scan image and output to JSON
+                    sh "trivy image --severity HIGH,CRITICAL --format json --output $TRIVY_REPORT $DOCKER_IMAGE"
+                }
+        }
         //pushing image to docker hub
-        stage('Docker hub image push'){
+        /*stage('Docker hub image push'){
             steps{
                 echo 'Pushing image to docker hub'
                 script{
@@ -79,6 +95,6 @@ pipeline{
 
                 }
             }
-        }
+        }*/
     }
 }
