@@ -75,9 +75,9 @@ pipeline{
                 bat """
                 set PATH=%TRIVY_PATH%;%PATH%
                 echo PATH in Jenkins: %PATH%
-                trivy image --severity HIGH,CRITICAL --format table -o ${TRIVY_REPORT} ${IMAGE_NAME}
+                trivy image --severity HIGH,CRITICAL --format table --output report.txt ${IMAGE_NAME}
 
-                findstr /I "HIGH CRITICAL"  ${TRIVY_REPORT}  >null
+                findstr /I "HIGH CRITICAL"  report.txt  >null
 
                 if %errorlevel% == 0 (
                 echo [ERROR] HIGH or ciritical found 
