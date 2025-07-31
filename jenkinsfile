@@ -11,6 +11,7 @@ pipeline{
         SONAR_SERVER_NAME = 'tan_sonarqube' //name given for the sonarqube link in jenkins manage settings
         TRIVY_REPORT = 'trivy_report.txt'
         IMAGE_NAME = 'thananya/tanwebapp-iis-ltsc2022:codev1'
+        TRIVY_PATH = 'C:\\Program Files\\trivy'
     }
     stages{
         //stage 1
@@ -72,6 +73,8 @@ pipeline{
             steps{
                 echo 'start scanning vuln using trivy'
                 bat """
+                set PATH=%TRIVY_PATH%;%PATH%
+                echo PATH in Jenkins: %PATH%
                 trivy image --severity HIGH,CRITICAL --format table -o ${TRIVY_REPORT} ${IMAGE_NAME}
 
                 findstr /I "HIGH CRITICAL"  ${TRIVY_REPORT}  >null
