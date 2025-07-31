@@ -9,7 +9,7 @@ pipeline{
         DOCKER_CREDS = 'tan-dockerhub'
         SONAR_PROJECT_KEY = 'tan_devops_d3'
         SONAR_SERVER_NAME = 'tan_sonarqube' //name given for the sonarqube link in jenkins manage settings
-        //TRIVY_REPORT = 'trivy_report.json'
+        TRIVY_REPORT = 'trivy_report.txt'
         IMAGE_NAME = 'thananya/tanwebapp-iis-ltsc2022:codev1'
     }
     stages{
@@ -72,9 +72,9 @@ pipeline{
             steps{
                 echo 'start scanning vuln using trivy'
                 bat """
-                trivy image --severity HIGH,CRITICAL --format table -o report.txt $IMAGE_NAME
+                trivy image --severity HIGH,CRITICAL --format table -o ${TRIVY_REPORT} ${IMAGE_NAME}
 
-                findstr /I "HIGH CRITICAL"  report.txt  >null
+                findstr /I "HIGH CRITICAL"  ${TRIVY_REPORT}  >null
 
                 if %errorlevel% == 0 (
                 echo [ERROR] HIGH or ciritical found 
