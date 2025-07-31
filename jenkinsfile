@@ -73,9 +73,7 @@ pipeline{
             steps{
                 echo 'start scanning vuln using trivy'
                 bat """
-                set PATH=%TRIVY_PATH%;%PATH%
-                echo PATH in Jenkins: %PATH%
-                trivy image --severity HIGH,CRITICAL --format table --output report.txt ${IMAGE_NAME}
+                C:\\Program Files\\trivy\\trivy.exe image --severity HIGH,CRITICAL --format table -output report.txt ${IMAGE_NAME}
 
                 findstr /I "HIGH CRITICAL"  report.txt  >nul
 
