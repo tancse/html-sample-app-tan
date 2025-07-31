@@ -102,9 +102,9 @@ pipeline{
                 echo 'deploying app using container'
                 bat """
                 echo trying to remove container with same name
-                docker rm ashuappc1 -f  >null 2>&1 || echo COntainer found found   
+                docker rm tanapp1 -f  >null 2>&1 || echo COntainer found found   
                 docker  run -itd --name tanapp1 -p 1234:80  ${IMAGE_NAME}:${IMAGE_TAG}
-                docker  ps | findstr tanappc1 
+                docker  ps | findstr tanapp1 
                 """
             }
         }
