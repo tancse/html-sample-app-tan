@@ -9,6 +9,8 @@ pipeline{
         DOCKER_CREDS = 'tan-dockerhub'
         SONAR_PROJECT_KEY = 'tan_devops_d3'
         SONAR_SERVER_NAME = 'tan_sonarqube' //name given for the sonarqube link in jenkins manage settings
+        TRIVY_REPORT = 'trivy_report.json'
+        DOCKER_IMAGE = 'thananya/tanwebapp-iis-ltsc2022:codev1'
     }
     stages{
         //stage 1
@@ -78,7 +80,7 @@ pipeline{
                     '''
 
                     // Scan image and output to JSON
-                    sh "trivy image --severity HIGH,CRITICAL --format json --output $TRIVY_REPORT $DOCKER_IMAGE"
+                    sh "trivy image --severity HIGH,CRITICAL --format json --output $TRIVY_NAME $DOCKER_IMAGE"
                 }
         }
         //pushing image to docker hub
