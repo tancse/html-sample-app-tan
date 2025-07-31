@@ -87,7 +87,7 @@ pipeline{
                 script{
                     //def imageName = "thananya/tanwebapp-iis-ltsc2022"
                     //def imageTag = "codev1"
-                    def hubcreds = "${DOCKER_CREDS}"
+                    def hubcreds =  'tan-dockerhub'
                     docker.withRegistry('https://registry.hub.docker.com', hubcreds){
                         docker.image(${IMAGE_NAME}).push()
                     }
