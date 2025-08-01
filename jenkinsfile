@@ -11,7 +11,7 @@ pipeline{
         SONAR_SERVER_NAME = 'tan_sonarqube' //name given for the sonarqube link in jenkins manage settings
         TRIVY_REPORT = 'trivy-tan-report.txt'
         IMAGE_NAME = 'thananya/tanwebapp-iis-ltsc2022'
-        IMAGE_TAG = 'codev1'
+        IMAGE_TAG = "code-v1.${BUILD_NUMBER}"
         TRIVY_PATH = 'C:\\Program Files\\trivy'
     }
     stages{
