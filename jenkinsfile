@@ -61,9 +61,9 @@ pipeline{
             steps{
                 echo 'starting docker build process'
                 script{
-                    def imageName = "docker.io/thananya/tanwebapp-iis-ltsc2022"
-                    def imageTag = "codev1"
-                    docker.build("${imageName}:${imageTag}",".")
+                    //def imageName = "docker.io/thananya/tanwebapp-iis-ltsc2022"
+                    //def imageTag = "code-v1.${BUILD_NUMBER}"
+                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}",".")
                 }
                 //verify image build
                 bat 'docker images | findstr tanwebapp'
